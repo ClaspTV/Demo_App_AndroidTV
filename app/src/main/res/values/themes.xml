@@ -1,4 +1,4 @@
 <resources>
 
-    <style name="Theme.VizbeeAndroidSDK" parent="@style/Theme.Leanback" />
+    <style name="Theme.VizbeeAndroidTVSDK" parent="@style/Theme.Leanback" />
 </resources>

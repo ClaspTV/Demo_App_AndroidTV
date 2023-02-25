@@ -41,7 +41,7 @@
             android:name="tv.vizbee.demo.atvreceiver.ui.VideoPlayerActivity"
             android:exported="true"
             android:launchMode="singleTask"
-            android:theme="@style/Theme.VizbeeAndroidSDK">
+            android:theme="@style/Theme.VizbeeAndroidTVSDK">
 
             <intent-filter>
                 <action android:name="com.google.android.gms.cast.tv.action.LOAD"/>
