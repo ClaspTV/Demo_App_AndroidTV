@@ -16,11 +16,20 @@ public class ATVVZBDemoApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         Log.v(LOG_TAG, "onCreate");
+
 		appLifecycleAdapter = new SampleAppLifecycleAdapter();
-		Log.i(LOG_TAG, "Init Vizbee");
+
+        //---
+        // [BEGIN] Vizbee Integration
+        //---
+
+        Log.i(LOG_TAG, "Init Vizbee");
         VizbeeWrapper.getInstance().init(ATVVZBDemoApplication.this);
+
+        //---
+        // [END] Vizbee Integration
+        //---
     }
 
 	public VizbeeAppLifecycleAdapter getAppLifecycleAdapter() {

@@ -162,6 +162,15 @@ public class ExoPlayerFragment extends VideoPlayerFragment implements Player.Lis
             mPlayer = null;
             mPlayerAdapter = null;
         }
+
+        // ---------------------------
+        // [BEGIN] Vizbee Integration
+        // ---------------------------
+
         Vizbee.getInstance().resetPlayerAdapter();
+
+        // ---------------------------
+        // [END] Vizbee Integration
+        // ---------------------------
     }
 }

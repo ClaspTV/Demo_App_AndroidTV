@@ -32,7 +32,7 @@ This sample shows how to develop a Vizbee Cast enabled Android TV app.
 6. If you are unable to launch the Android TV Receiver or have any other issues follow the [Troubleshooting Guide](https://console.vizbee.tv/app/vzb2000001/develop/guides/firetv-androidtv-troubleshooting-snippets).
 
 ## Integration Steps
-Look for block comments with text "Vizbee Integration Begins" and "Vizbee Integration Ends" for an easy understanding of integration.
+Look for block comments with text "[BEGIN] Vizbee Integration" and "[END] Vizbee Integration" for an easy understanding of the integration.
 
 ### Build Setup
 1. Add the Vizbee repository to your Android TV receiver app’s root [build.gradle](/build.gradle).

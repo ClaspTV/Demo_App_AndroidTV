@@ -311,8 +311,18 @@ public class BitMovinPlayerFragment extends VideoPlayerFragment {
         if (null != mediaSessionManager) {
             mediaSessionManager.updatePlaybackState();
         }
+
+        //---
+        // [BEGIN] Vizbee Integration
+        //---
+
         Log.i(LOG_TAG, "stopPlayback - Resetting Vizbee player adapter");
         Vizbee.getInstance().resetPlayerAdapter();
+
+        //---
+        // [END] Vizbee Integration
+        //---
+
         getActivity().finish();
     }
 

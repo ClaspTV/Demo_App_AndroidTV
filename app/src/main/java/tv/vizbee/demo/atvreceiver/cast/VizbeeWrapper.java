@@ -12,7 +12,7 @@ import tv.vizbee.screen.api.VizbeeOptions;
 
 public class VizbeeWrapper {
 
-    private static String VIZBEE_APP_ID = "vzb2000001";
+    private static final String VIZBEE_APP_ID = "vzb2000001";
     private static volatile VizbeeWrapper sInstance;
 
     private VizbeeOptions vizbeeOptions;
@@ -47,7 +47,7 @@ public class VizbeeWrapper {
                 .setCustomMetricsAttributes(attributes)
                 .build();
         VizbeeAppLifecycleAdapter appLifecycleAdapter =
-                ((ATVVZBDemoApplication)application).getAppLifecycleAdapter();
+                ((ATVVZBDemoApplication) application).getAppLifecycleAdapter();
         Vizbee.getInstance().initialize(application,
                 VIZBEE_APP_ID,
                 new AppAdapter(appLifecycleAdapter),
