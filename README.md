@@ -27,8 +27,41 @@ This sample shows how to develop a Vizbee Cast enabled Android TV app.
                               .build()
          }
       }
-4. You should now be able to launch your Android TV Receiver using a sender.
-5. If you are unable to launch the Android TV Receiver or have any other issues follow the [Troubleshooting Guide](https://console.vizbee.tv/app/vzb2000001/develop/guides/firetv-androidtv-troubleshooting-snippets).
+4. Follow the [Integration Steps](#integration-steps) mentioned below.
+5. You should now be able to launch your Android TV Receiver using a sender.
+6. If you are unable to launch the Android TV Receiver or have any other issues follow the [Troubleshooting Guide](https://console.vizbee.tv/app/vzb2000001/develop/guides/firetv-androidtv-troubleshooting-snippets).
+
+## Integration Steps
+Look for block comments with text "Vizbee Integration Begins" and "Vizbee Integration Ends" for an easy understanding of integration.
+
+### Build Setup
+1. Add the Vizbee repository to your Android TV receiver app’s root [build.gradle](/build.gradle).
+2. Add Vizbee SDK dependency to your app module's [build.gradle](/app/build.gradle).
+
+### Manifest Setup
+1. Add the required intent filters to the app's [AndroidManifest.xml](/app/src/main/AndroidManifest.xml).
+2. Create and implement the [ReceiverOptionsProvider](/app/src/main/java/tv/vizbee/demo/atvreceiver/cast/CastReceiverOptionsProvider.java) and refer it from [AndroidManifest.xml](/app/src/main/AndroidManifest.xml).
+3. Handle the load intent in your activity responsible for loading video. In Demo App, it is [VideoPlayerActivity](/app/src/main/java/tv/vizbee/demo/atvreceiver/ui/VideoPlayerActivity.java).
+
+### Code Setup
+1. Copy the files under [cast package](/app/src/main/java/tv/vizbee/demo/atvreceiver/cast) to your app under an appropriate package.
+
+### SDK Initialisation
+1. In your [application](/app/src/main/java/tv/vizbee/demo/atvreceiver/ATVVZBDemoApplication.java) class, intialise Vizbee Android TV Receiver SDK via [VizbeeWrapper](/app/src/main/java/tv/vizbee/demo/atvreceiver/cast/VizbeeWrapper.java) helper file.
+
+### App Adapter
+1. Implement `onStart()` and `onEvent()` methods of [AppAdapter](app/src/main/java/tv/vizbee/demo/atvreceiver/cast/AppAdapter.java).
+2. Implement `onStart()` to handle a start video request sent by the Mobile app.
+3. Implement `onEvent()` to handle a sign in request sent by the Mobile app to automatically sign in the user from the Mobile app.
+
+### Player Adapter
+1. If your app has a standard MediaSession/MediaSessionCompat tied to your video player, use [BMMediaSessionCompatPlayerAdapter](app/src/main/java/tv/vizbee/demo/atvreceiver/cast/bitmovinplayer/BMMediaSessionCompatPlayerAdapter.java) and modify the implementation as per your app's video player logic.
+2. If your app has a non-standard interface to your video player, use one of [BMVizbeePlayerAdapter](app/src/main/java/tv/vizbee/demo/atvreceiver/cast/bitmovinplayer/BMVizbeePlayerAdapter.java) and [ExoVizbeePlayerAdapter](app/src/main/java/tv/vizbee/demo/atvreceiver/cast/bitmovinplayer/BMVizbeePlayerAdapter.java) as per your app's video player.
+3. Based on your choice of Player Adapter, remove the other adapters from your code.
+4. Call `setPlayerAdapter()` before the start of every video playback.
+5. Call `resetPlayerAdapter()` when the video stops, fails, ends or if the containing Fragment or Activity is stopped or destroyed.
+6. Refer to [BitMovinPlayerFragment](app/src/main/java/tv/vizbee/demo/atvreceiver/player/BitMovinPlayerFragment.java) or [ExoPlayerFragment](app/src/main/java/tv/vizbee/demo/atvreceiver/player/ExoPlayerFragment.java) for the examples of `setPlayerAdapter()` and `resetPlayerAdapter()`.
+
 
 ## Documentation
 * [Vizbee Android TV Overview and Developer Guide](https://console.vizbee.tv/app/vzb2000001/develop/guides/firetv-androidtv-sdk)
