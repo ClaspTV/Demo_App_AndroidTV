@@ -5,9 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import tv.vizbee.demo.atvreceiver.ATVVZBDemoApplication;
 import tv.vizbee.demo.atvreceiver.R;
-
-import tv.vizbee.demo.atvreceiver.cast.VizbeeWrapper;
+import tv.vizbee.demo.atvreceiver.cast.applifecycle.SampleAppReadyModel;
+import tv.vizbee.demo.atvreceiver.cast.applifecycle.VizbeeAppLifecycleAdapter;
 
 public class MainActivity extends Activity {
 
@@ -16,6 +17,9 @@ public class MainActivity extends Activity {
    public static final String VIDEO = "Video";
    public static final String POSITION = "position";
 
+   private SampleAppReadyModel appReadyModel;
+   private VizbeeAppLifecycleAdapter appLifecycleAdapter;
+
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
@@ -23,7 +27,10 @@ public class MainActivity extends Activity {
       Log.v(LOG_TAG, "onCreate " + getIntent());
       setContentView(R.layout.activity_main);
 
-      VizbeeWrapper.getInstance().init(getApplication(), this);
+      ATVVZBDemoApplication application = (ATVVZBDemoApplication) getApplication();
+      appLifecycleAdapter = application.getAppLifecycleAdapter();
+      appReadyModel = new SampleAppReadyModel(this);
+      appLifecycleAdapter.setAppReady(appReadyModel);
    }
 
    @Override
@@ -48,5 +55,13 @@ public class MainActivity extends Activity {
    protected void onNewIntent(Intent intent) {
       super.onNewIntent(intent);
       Log.v(LOG_TAG, "onNewIntent");
+   }
+
+   @Override
+   protected void onDestroy() {
+      super.onDestroy();
+      Log.v(LOG_TAG, "onDestroy");
+      appLifecycleAdapter.clearAppReady();
+      appReadyModel = null;
    }
 }

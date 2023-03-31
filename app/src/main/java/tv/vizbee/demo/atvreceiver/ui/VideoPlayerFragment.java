@@ -17,7 +17,7 @@ import tv.vizbee.demo.atvreceiver.player.VideoPlayerGlue;
 @SuppressLint("LongLogTag")
 public abstract class VideoPlayerFragment extends VideoSupportFragment {
 
-    private static final String LOG_TAG = "VZBApp::VideoPlayerFragment";
+    private static final String LOG_TAG = "VZBApp_VideoPlayerFragment";
 
     protected static final int UPDATE_DELAY = 16;
 

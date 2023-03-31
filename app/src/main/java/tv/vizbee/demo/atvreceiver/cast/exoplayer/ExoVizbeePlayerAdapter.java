@@ -1,20 +1,16 @@
 package tv.vizbee.demo.atvreceiver.cast.exoplayer;
 
 
-import android.content.Context;
 import android.util.Log;
 
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.Player;
 
-import java.lang.ref.WeakReference;
-
+import tv.vizbee.demo.atvreceiver.player.VideoPlayerGlue;
 import tv.vizbee.screen.api.adapter.VizbeePlayerAdapter;
-import tv.vizbee.screen.api.messages.VideoTrackInfo;
-import tv.vizbee.screen.api.VizbeeStatusCodes;
 import tv.vizbee.screen.api.messages.PlaybackStatus;
 import tv.vizbee.screen.api.messages.VideoStatus;
-import tv.vizbee.demo.atvreceiver.player.VideoPlayerGlue;
+import tv.vizbee.screen.api.messages.VideoTrackInfo;
 
 public class ExoVizbeePlayerAdapter extends VizbeePlayerAdapter {
 
@@ -22,20 +18,18 @@ public class ExoVizbeePlayerAdapter extends VizbeePlayerAdapter {
 
     private ExoPlayer exoPlayer;
     private VideoPlayerGlue playerGlue;
-    private final WeakReference<Context> mContext;
     private VideoStatus videoStatus;
     private boolean mVideoStarted;
 
     public ExoVizbeePlayerAdapter(VideoPlayerGlue playerGlue) {
-        this(playerGlue, null, null);
+        this(playerGlue, null);
     }
 
-    public ExoVizbeePlayerAdapter(VideoPlayerGlue videoPlayerGlue, ExoPlayer player, Context context) {
+    public ExoVizbeePlayerAdapter(VideoPlayerGlue videoPlayerGlue, ExoPlayer player) {
         super();
 
         exoPlayer = player;
         playerGlue = videoPlayerGlue;
-        mContext = new WeakReference<>(context);
         videoStatus = new VideoStatus();
     }
 

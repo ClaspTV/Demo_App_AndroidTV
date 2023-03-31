@@ -20,7 +20,7 @@ import tv.vizbee.demo.atvreceiver.player.BitMovinPlayerFragment;
 @SuppressLint("LongLogTag")
 public class VideoPlayerActivity extends FragmentActivity {
 
-   private static final String LOG_TAG = "VZBApp::VideoPlayerActivity";
+   private static final String LOG_TAG = "VZBApp_VideoPlayerActivity";
 
    private VideoPlayerFragment videoPlayerFragment;
 

@@ -36,7 +36,7 @@ import tv.vizbee.demo.atvreceiver.presenter.VideoCardPresenter;
 
 public class MainFragment extends BrowseFragment implements LoaderManager.LoaderCallbacks<List<Video>> {
 
-   private static final String LOG_TAG = "VZBApp::MainFragment";;
+   private static final String LOG_TAG = "VZBApp_MainFragment";;
 
    private Drawable mDefaultBackground;
    private DisplayMetrics mMetrics;
@@ -131,6 +131,8 @@ public class MainFragment extends BrowseFragment implements LoaderManager.Loader
    public void onLoadFinished(Loader<List<Video>> loader, List<Video> data) {
 
       VideoCardPresenter videoCardPresenter = new VideoCardPresenter();
+
+      mCategoryRowAdapter.clear();
 
       int i;
       for (i = 0; i < VideoCatalog.VIDEO_CATEGORY.length; i++) {

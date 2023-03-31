@@ -109,7 +109,7 @@ public class ExoPlayerFragment extends VideoPlayerFragment implements Player.Lis
         }};
         videoInfo.setTracks(tracks);
 
-        exoVizbeePlayerAdapter = new ExoVizbeePlayerAdapter(mPlayerGlue, mPlayer, getActivity());
+        exoVizbeePlayerAdapter = new ExoVizbeePlayerAdapter(mPlayerGlue, mPlayer);
         Vizbee.getInstance().setPlayerAdapter(videoInfo, exoVizbeePlayerAdapter);
 
         // ---------------------------
