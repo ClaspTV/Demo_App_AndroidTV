@@ -32,8 +32,16 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.lifecycle:lifecycle-process:2.4.1'
 
+    // ---------------------------
+    // [BEGIN] Vizbee Integration
+    // ---------------------------
+
     // vizbee android tv sdk
     implementation "tv.vizbee:androidtv-receiver-sdk:4.0.5"
+
+    // ---------------------------
+    // [END] Vizbee Integration
+    // ---------------------------
 
     // cast connect libraries
     implementation 'com.google.android.gms:play-services-cast-tv:20.0.0'

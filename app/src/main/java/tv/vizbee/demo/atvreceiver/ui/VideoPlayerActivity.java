@@ -53,15 +53,57 @@ public class VideoPlayerActivity extends FragmentActivity {
    protected void onStart() {
       super.onStart();
 
+      // ---------------------------
+      // [BEGIN] Vizbee Integration
+      // ---------------------------
+
       Log.d(LOG_TAG, "onStart");
-      MediaManager mediaManager =
-              CastReceiverContext.getInstance().getMediaManager();
+      MediaManager mediaManager = CastReceiverContext.getInstance().getMediaManager();
       // Pass the intent to the SDK. You can also do this in onCreate().
       if (mediaManager.onNewIntent(getIntent())) {
          // If the SDK recognizes the intent, you should early return.
          Log.w(LOG_TAG, "onStart: SDK recognises new intent");
          return;
       }
+
+      // ---------------------------
+      // [END] Vizbee Integration
+      // ---------------------------
+
+      // if the SDK doesn’t recognize the intent, you can handle the intent with
+      // your own logic.
+   }
+
+   @Override
+   protected void onNewIntent(Intent intent) {
+      super.onNewIntent(intent);
+
+      Log.d(LOG_TAG, "onNewIntent");
+
+      // ---------------------------
+      // [BEGIN] Vizbee Integration
+      // ---------------------------
+
+      MediaManager mediaManager = CastReceiverContext.getInstance().getMediaManager();
+      if (mediaManager.onNewIntent(intent)) {
+         // if the SDK recognizes the intent, you should early return.
+         Log.i(LOG_TAG, "onNewIntent: SDK recognises new intent");
+         return;
+      }
+
+      // ---------------------------
+      // [END] Vizbee Integration
+      // ---------------------------
+
+      // if the SDK doesn’t recognize the intent, you can handle the intent with
+      // your own logic.
+      videoPlayerFragment.processIntent(intent);
+   }
+
+   @Override
+   public void onResume() {
+      super.onResume();
+      Log.d(LOG_TAG, "onResume");
    }
 
    @Override
@@ -80,30 +122,6 @@ public class VideoPlayerActivity extends FragmentActivity {
    protected void onDestroy() {
       super.onDestroy();
       Log.d(LOG_TAG, "onDestroy");
-   }
-
-   @Override
-   public void onResume() {
-      super.onResume();
-      Log.d(LOG_TAG, "onResume");
-   }
-
-   @Override
-   protected void onNewIntent(Intent intent) {
-      super.onNewIntent(intent);
-
-      Log.d(LOG_TAG, "onNewIntent");
-
-      MediaManager mediaManager = CastReceiverContext.getInstance().getMediaManager();
-      if (mediaManager.onNewIntent(intent)) {
-         // if the SDK recognizes the intent, you should early return.
-         Log.i(LOG_TAG, "onNewIntent: SDK recognises new intent");
-         return;
-      }
-
-      // if the SDK doesn’t recognize the intent, we can handle the intent with
-      // your own logic.
-      videoPlayerFragment.processIntent(intent);
    }
 
    @SuppressLint("RestrictedApi")

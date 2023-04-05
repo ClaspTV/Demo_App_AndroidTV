@@ -47,7 +47,7 @@ Look for the block comments with text "[BEGIN] Vizbee Integration" and "[END] Vi
 1. Copy the files under [cast package](/app/src/main/java/tv/vizbee/demo/atvreceiver/cast) to your app under an appropriate package.
 
 ### SDK Initialisation
-1. In your [application](/app/src/main/java/tv/vizbee/demo/atvreceiver/ATVVZBDemoApplication.java) class, intialise Vizbee Android TV Receiver SDK via [VizbeeWrapper](/app/src/main/java/tv/vizbee/demo/atvreceiver/cast/VizbeeWrapper.java) helper file.
+1. In your [application](/app/src/main/java/tv/vizbee/demo/atvreceiver/ATVVZBDemoApplication.java) class, initialise Vizbee Android TV Receiver SDK via [VizbeeWrapper](/app/src/main/java/tv/vizbee/demo/atvreceiver/cast/VizbeeWrapper.java) helper file.
 
 ### App Adapter
 1. Implement `onStart()` and `onEvent()` methods of [AppAdapter](app/src/main/java/tv/vizbee/demo/atvreceiver/cast/AppAdapter.java).

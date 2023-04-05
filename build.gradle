@@ -14,9 +14,19 @@ allprojects {
     repositories {
         google()
         jcenter()
+
+        // ---------------------------
+        // [BEGIN] Vizbee Integration
+        // ---------------------------
+
         maven {
             url "https://repo.claspws.tv/artifactory/libs"
         }
+
+        // ---------------------------
+        // [END] Vizbee Integration
+        // ---------------------------
+
         maven {
             url 'https://artifacts.bitmovin.com/artifactory/public-releases'
         }
