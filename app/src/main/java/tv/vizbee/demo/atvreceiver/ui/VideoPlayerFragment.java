@@ -24,7 +24,7 @@ public abstract class VideoPlayerFragment extends VideoSupportFragment {
     protected VideoPlayerGlue mPlayerGlue;
 
     //---
-    // LifeCycle
+    // Fragment Lifecycle
     //---
 
     @Override
@@ -101,6 +101,10 @@ public abstract class VideoPlayerFragment extends VideoSupportFragment {
             startPlayback(video, startPosition);
         }
     }
+
+    //---
+    // Player
+    //---
 
     public void initializePlayer() {
         // Child class implements

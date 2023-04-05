@@ -29,17 +29,28 @@ import tv.vizbee.demo.atvreceiver.ui.VideoPlayerFragment;
 @SuppressLint("LongLogTag")
 public class ExoPlayerFragment extends VideoPlayerFragment implements Player.Listener {
 
-    private static final String LOG_TAG = "VZBApp::ExoPlayerFragment";
+    private static final String LOG_TAG = "VZBApp_ExoPlayerFragment";
 
+    // Player
     private ExoPlayer mPlayer;
+
+    // Player Adapter
     private LeanbackPlayerAdapter mPlayerAdapter;
     ExoVizbeePlayerAdapter exoVizbeePlayerAdapter;
+
+    //---
+    // Fragment Lifecycle
+    //---
 
     public void onStop() {
 
         super.onStop();
         Log.v(LOG_TAG, "onStop");
     }
+
+    //---
+    // Exo Player
+    //---
 
     public void initializePlayer() {
 
@@ -95,7 +106,8 @@ public class ExoPlayerFragment extends VideoPlayerFragment implements Player.Lis
 
         VideoInfo videoInfo = new VideoInfo(video.getGuid(), video.getTitle(), video.getSubtitle(),
                 video.getImageURL(), video.getVideoURL(), video.isLive());
-        // Tracks
+
+        // Tracks for closed captions [Optional]
         final VideoTrackInfo englishCaptions = new VideoTrackInfo.Builder(1, VideoTrackInfo.TYPE_TEXT)
                 .setContentId("https://assets.epix.com/webvtt/rings.vtt")
                 .setContentType("text/vtt")

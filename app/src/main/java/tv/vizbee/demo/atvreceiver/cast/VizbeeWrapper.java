@@ -12,6 +12,8 @@ import tv.vizbee.screen.api.VizbeeOptions;
 
 public class VizbeeWrapper {
 
+    // You can optionally read it from BuildConfig or resources.
+    // You can use the existence of this app ID as a feature flag to enable/disable Vizbee.
     private static final String VIZBEE_APP_ID = "vzb2000001";
     private static volatile VizbeeWrapper sInstance;
 
@@ -35,19 +37,22 @@ public class VizbeeWrapper {
 
     public void init(Application application) {
 
-        Vizbee.getInstance().enableVerboseLogging();
-
         // optional VizbeeOptions
         JSONObject attributes = new JSONObject();
         try {
             attributes.put("TEST_CUSTOM_KEY", "TEST_CUSTOM_VALUE");
         } catch (JSONException e) {
+            // handle JSONException
         }
         vizbeeOptions = new VizbeeOptions.Builder()
                 .setCustomMetricsAttributes(attributes)
                 .build();
+
+        // get app lifecycle adapter
         VizbeeAppLifecycleAdapter appLifecycleAdapter =
                 ((ATVVZBDemoApplication) application).getAppLifecycleAdapter();
+
+        // initialise Vizbee
         Vizbee.getInstance().initialize(application,
                 VIZBEE_APP_ID,
                 new AppAdapter(appLifecycleAdapter),

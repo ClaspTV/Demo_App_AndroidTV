@@ -31,6 +31,10 @@ public class VideoPlayerActivity extends FragmentActivity {
 
       Log.d(LOG_TAG, "onCreate");
 
+      // ---------------------------
+      // [BEGIN] Vizbee Integration [OPTIONAL]
+      // ---------------------------
+
       // set custom metrics attributes to Vizbee
       JSONObject customAttrs = new JSONObject();
       try {
@@ -40,7 +44,12 @@ public class VideoPlayerActivity extends FragmentActivity {
          Log.e(LOG_TAG, "exception while creating custom attributes", e);
       }
 
-       videoPlayerFragment = new BitMovinPlayerFragment();
+      // ---------------------------
+      // [BEGIN] Vizbee Integration [OPTIONAL]
+      // ---------------------------
+
+      // can switch b/w BitMovinPlayerFragment and ExoPlayerFragment for testing.
+      videoPlayerFragment = new BitMovinPlayerFragment();
       if (null == savedInstanceState) {
          getSupportFragmentManager()
                  .beginTransaction()
@@ -49,6 +58,13 @@ public class VideoPlayerActivity extends FragmentActivity {
       }
    }
 
+   /**
+    * Handling of the load video intent by passing it to CastReceiverContext's MediaManager is
+    * required for the start video (AppAdapter::onStart()) to work.
+    * For this Demo app, VideoPlayerActivity is responsible for loading the video.
+    * In case your app has a single activity that shows videos and also loads them, you need to
+    * handle load video intent in that activity's onStart() and onNewIntent()
+    */
    @Override
    protected void onStart() {
       super.onStart();
@@ -74,6 +90,13 @@ public class VideoPlayerActivity extends FragmentActivity {
       // your own logic.
    }
 
+   /**
+    * Handling of the load video intent by passing it to CastReceiverContext's MediaManager is
+    * required for the start video (AppAdapter::onStart()) to work.
+    * For this Demo app, VideoPlayerActivity is responsible for loading the video.
+    * In case your app has a single activity that shows videos and also loads them, you need to
+    * handle load video intent in that activity's onStart() and onNewIntent()
+    */
    @Override
    protected void onNewIntent(Intent intent) {
       super.onNewIntent(intent);

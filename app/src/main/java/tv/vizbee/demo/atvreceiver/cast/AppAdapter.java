@@ -25,10 +25,24 @@ import tv.vizbee.screen.api.messages.VideoInfo;
 public class AppAdapter extends VizbeeAppAdapter {
 
     private static final String LOG_TAG = "VZBApp_AppAdapter";
+
+    // a reference to VizbeeAppLifecycleAdapter to know about app's readiness and the required
+    // references to process events coming from mobile
     private final VizbeeAppLifecycleAdapter appLifecycleAdapter;
+
+    // a saved start video request to be processed when the app becomes ready
     private StartVideoRequest startVideoRequest;
+
+    // a saved sign in request to be processed when the app becomes ready
     private CustomEvent customEvent;
 
+    /**
+     * Constructor that takes an instance of VizbeeAppLifecycleAdapter.
+     * AppAdapter listens to the lifecycle adapter and when the app is ready, it processes any saved
+     * start video/ sign in requests that were missed because the request had come even before some
+     * of the app components were not initialised.
+     * @param appLifecycleAdapter an instance of VizbeeAppLifecycleAdapter
+     */
     public AppAdapter(VizbeeAppLifecycleAdapter appLifecycleAdapter) {
         super();
         this.appLifecycleAdapter = appLifecycleAdapter;
@@ -49,6 +63,12 @@ public class AppAdapter extends VizbeeAppAdapter {
         });
     }
 
+    /**
+     * Handle a request to start a video or audio deep-link from Sender(Mobile).
+     * This method should setup app state to correctly start playback of new video or audio.
+     * @param videoInfo The information about the video or audio to start.
+     * @param positionMs The start position of the video or audio.
+     */
     @Override
     public void onStart(VideoInfo videoInfo, long positionMs) {
         super.onStart(videoInfo, positionMs);
@@ -56,17 +76,20 @@ public class AppAdapter extends VizbeeAppAdapter {
         Log.i(LOG_TAG, "onStart " + videoInfo.toShortInlineString() +
                 "position " + positionMs);
 
+        // Sanity: if the app is not ready yet, save the start video request.
         if (!appLifecycleAdapter.isAppReady()) {
             Log.i(LOG_TAG, "App is not ready yet. Saving start video.");
             startVideoRequest = new StartVideoRequest(videoInfo, positionMs);
             return;
         }
 
+        // [1] get the component(activity) required for deep linking from app lifecycle adapter.
         WeakReference<Object> appReadyModelWeakRef = appLifecycleAdapter.getAppReadyModel();
         if ((null != appReadyModelWeakRef) && (null != appReadyModelWeakRef.get())){
             SampleAppReadyModel appReadyModel = (SampleAppReadyModel) appReadyModelWeakRef.get();
             Activity activity = appReadyModel.activity;
 
+            // [2] do the deep linking to the video.
             if (null != activity) {
                 Video video = new Video(videoInfo.getGUID(), videoInfo.getTitle(), videoInfo.getSubtitle(),
                         videoInfo.getImageURL(), videoInfo.getVideoURL(), videoInfo.isLive());
@@ -82,17 +105,20 @@ public class AppAdapter extends VizbeeAppAdapter {
     public void onEvent(@NonNull CustomEvent customEvent) {
         Log.i(LOG_TAG, "Invoked onEvent with event = " + customEvent);
 
+        // Sanity: if the app is not ready yet, save the sign in request.
         if (!appLifecycleAdapter.isAppReady()) {
             Log.i(LOG_TAG, "App is not ready yet. Saving custom event.");
             this.customEvent = customEvent;
             return;
         }
 
+        // [1] get the component(activity) required for performing sign in from app lifecycle adapter.
         WeakReference<Object> appReadyModelWeakRef = appLifecycleAdapter.getAppReadyModel();
         if ((null != appReadyModelWeakRef) && (null != appReadyModelWeakRef.get())){
             SampleAppReadyModel appReadyModel = (SampleAppReadyModel) appReadyModelWeakRef.get();
             Activity activity = appReadyModel.activity;
 
+            // [2] Perform the sign in [For Demo app, we are only showign a toast].
             if (null != activity) {
 
                 String eventType = customEvent.getEventType();

@@ -18,6 +18,7 @@ public class ATVVZBDemoApplication extends Application {
         super.onCreate();
         Log.v(LOG_TAG, "onCreate");
 
+        // create app lifecycle instance
 		appLifecycleAdapter = new SampleAppLifecycleAdapter();
 
         //---
@@ -32,6 +33,11 @@ public class ATVVZBDemoApplication extends Application {
         //---
     }
 
+    /**
+     * Make VizbeeAppLifecycleAdapter available for its handler(MainActivity) and its
+     * client(AppAdapter)
+     * @return an instance of VizbeeAppLifecycleAdapter
+     */
 	public VizbeeAppLifecycleAdapter getAppLifecycleAdapter() {
         return appLifecycleAdapter;
     }

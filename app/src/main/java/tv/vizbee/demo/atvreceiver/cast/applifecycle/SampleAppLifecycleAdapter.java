@@ -4,6 +4,18 @@ import android.util.Log;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
+/**
+ * NOTE: This is not a mandatory file for the Vizbee integration. If your app has another means to
+ * pass the required models/references to AppAdapter that can be used (1) to handle deep linking for
+ * start video request and (2) to process sign in request, this need not be included.
+ *
+ * This class implements VizbeeAppLifecycleAdapter and is a self sufficient implementation. No more
+ * app specific changes are needed in this class except the name of the class. Use your app name as
+ * a prefix to the class name.
+ *
+ * You need to create an instance of this class in Application class and make it available to other
+ * components like MainActivity.
+ */
 public class SampleAppLifecycleAdapter implements VizbeeAppLifecycleAdapter {
 
     private static final String LOG_TAG = "SampleAppLifecycleAdp";

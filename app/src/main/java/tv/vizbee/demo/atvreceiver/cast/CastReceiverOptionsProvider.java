@@ -11,6 +11,11 @@ import com.google.android.gms.cast.tv.ReceiverOptionsProvider;
 
 import java.util.Collections;
 
+/**
+ * Define ReceiverOptionsProvider for the Cast SDK to know CastReceiverOptions.
+ * It's crucial to specify custom name space with "urn:x-cast:tv.vizbee.sync" for the connection
+ * with Sender to work.
+ */
 public class CastReceiverOptionsProvider implements ReceiverOptionsProvider {
 
    private static final String LOG_TAG = CastReceiverOptionsProvider.class.getSimpleName();
