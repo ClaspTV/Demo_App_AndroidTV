@@ -12,7 +12,7 @@ This sample shows how to develop a Vizbee Cast enabled Android TV app.
    2. Add the cast serial number (Settings -> System -> Cast -> Serial number) of your Android TV to [Cast Developer Console](https://cast.google.com/publish) to test during development. Refer to the picture below.
       ![Add Cast Serial Number To Cast Console](https://vzb-origin.s3.amazonaws.com/images/integration/androidtv/AddCastSerialNumberToCastConsole.png)
    
-3. Follow the steps for setting up your sender app for Cast Connect support.
+3. Follow the steps for setting up your sender app for Android TV cast support.
    1. Once you have integrated Vizbee into your sender app, you can declare its readiness to cast 
       to Android TV by setting the androidReceiverCompatible flag on LaunchOptions to true.
       ```
@@ -32,7 +32,7 @@ This sample shows how to develop a Vizbee Cast enabled Android TV app.
 6. If you are unable to launch the Android TV Receiver or have any other issues follow the [Troubleshooting Guide](https://console.vizbee.tv/app/vzb2000001/develop/guides/firetv-androidtv-troubleshooting-snippets).
 
 ## Integration Steps
-Look for block comments with text "[BEGIN] Vizbee Integration" and "[END] Vizbee Integration" for an easy understanding of the integration.
+Look for the block comments with text "[BEGIN] Vizbee Integration" and "[END] Vizbee Integration" in the code for an easy understanding of the integration.
 
 ### Build Setup
 1. Add the Vizbee repository to your Android TV receiver app’s root [build.gradle](/build.gradle).
