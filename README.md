@@ -8,9 +8,9 @@ This sample shows how to develop a Vizbee Cast enabled Android TV app.
 2. Follow the steps for setting up the Cast Developer Console.
    1. Add the package name of your Android TV app in [Cast Developer Console](https://cast.google.com/publish) to associate it with your Cast App ID.
       1. This is already done for Demo App. Refer the picture below.
-      ![Add Android TV Package Name to Cast Console](https://vzb-origin.s3.amazonaws.com/images/integration/androidtv/CastConsoleDemoPackageName.png)
+      ![Add Android TV Package Name to Cast Console](https://static.claspws.tv/images/integration/androidtv/cast_console_demo_package_name.png)
    2. Add the cast serial number (Settings -> System -> Cast -> Serial number) of your Android TV to [Cast Developer Console](https://cast.google.com/publish) to test during development. Refer to the picture below.
-      ![Add Cast Serial Number To Cast Console](https://vzb-origin.s3.amazonaws.com/images/integration/androidtv/AddCastSerialNumberToCastConsole.png)
+      ![Add Cast Serial Number To Cast Console](https://static.claspws.tv/images/integration/androidtv/add_cast_serial_number_to_cast_console.png)
    
 3. Follow the steps for setting up your sender app for Android TV cast support.
    1. Once you have integrated Vizbee into your sender app, you can declare its readiness to cast 
