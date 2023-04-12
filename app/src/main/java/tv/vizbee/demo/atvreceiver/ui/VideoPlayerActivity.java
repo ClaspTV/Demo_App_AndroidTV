@@ -16,6 +16,7 @@ import org.json.JSONObject;
 
 import tv.vizbee.demo.atvreceiver.cast.VizbeeWrapper;
 import tv.vizbee.demo.atvreceiver.player.BitMovinPlayerFragment;
+import tv.vizbee.demo.atvreceiver.player.ExoPlayerFragment;
 
 @SuppressLint("LongLogTag")
 public class VideoPlayerActivity extends FragmentActivity {
@@ -49,7 +50,7 @@ public class VideoPlayerActivity extends FragmentActivity {
       // ---------------------------
 
       // can switch b/w BitMovinPlayerFragment and ExoPlayerFragment for testing.
-      videoPlayerFragment = new BitMovinPlayerFragment();
+      videoPlayerFragment = new ExoPlayerFragment();
       if (null == savedInstanceState) {
          getSupportFragmentManager()
                  .beginTransaction()
